@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HISTORY | ふちゆか Official Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">HUCHIYUKA</a>
+    <nav>
+      <a href="index.html#profile">PROFILE</a>
+      <a href="history.html">HISTORY</a>
+      <a href="index.html#link">LINK</a>
+    </nav>
+  </header>
+
+  <main>
+      <section id="history" class="content-section history-section">
+      <p class="section-subtitle">My Activity Record</p>
+      <h2 class="section-title">HISTORY</h2>
+      <p class="history-intro">
+        これまで参加した企画や、歌の活動をまとめています。
+      </p>
+
+      <div class="history-list">
+  
+        <div class="history-item">
+          <div class="history-date">2026</div>
+          <div class="history-content">
+            <span class="history-tag">EVENT</span>
+           <h3>VocaDuo2026 参加</h3>
+            <p>参加作品「ゆめ色わたあめ」</p>
+            <a href="https://www.nicovideo.jp/watch/sm46475208?from=0"
+               target="_blank" rel="noopener noreferrer">
+              作品を聴く
+            </a>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="history-date">2026</div>
+          <div class="history-content">
+            <span class="history-tag">RANKING</span>
+            <h3>歌コレ2026秋</h3>
+            <p>ルーキー部門 76位</p>
+            <p>「撫でんな / 柊マグネタイト」</p>
+            <a href="https://www.nicovideo.jp/watch/sm46842574?from=0"
+               target="_blank" rel="noopener noreferrer">
+              作品を聴く
+            </a>
+          </div>
+        </div>
+
+       
+     <div class="history-item">
+       <div class="history-date">other</div>
+       <div class="history-content">
+        <span class="history-tag">COLLABORATION</span>
+        <h3>合唱・コラボ企画</h3>
+        <p>これまで参加した合唱やコラボ作品はこちら！</p>
+
+        <div id="collab-videos" class="youtube-video-grid">
+          <p id="collab-status">動画を読み込んでいます...</p>
+        </div>
+      </div>
+     </div>
+
+      </div>
+     </section>
+  </main>
+
+  <footer>
+    <p>© HUCHIYUKA</p>
+  </footer>
+
+
+<script>
+const API_KEY = "AIzaSyBgcpIpT0VhfdGO8Q5bF3KE_3-58BkH2F4";
+const PLAYLIST_ID = "PL5ugFQ27GsimiJ22c3AkXXMIP0Ac-EWKO";
+
+async function loadPlaylist() {
+  const container = document.getElementById("collab-videos");
+
+  try {
+    const params = new URLSearchParams({
+      part: "snippet",
+      playlistId: PLAYLIST_ID,
+      maxResults: "50",
+      key: API_KEY
+    });
+
+    const response = await fetch(
+      "https://www.googleapis.com/youtube/v3/playlistItems?" + params
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error?.message || "取得に失敗しました");
+    }
+
+    const videos = data.items || [];
+    const INITIAL_COUNT = 4;
+    let showingAll = false;
+
+    function renderVideos() {
+      container.replaceChildren();
+
+      const visibleVideos = showingAll
+        ? videos
+        : videos.slice(0, INITIAL_COUNT);
+
+      visibleVideos.forEach(item => {
+        const snippet = item.snippet;
+        const videoId = snippet?.resourceId?.videoId;
+        if (!videoId) return;
+
+        const card = document.createElement("a");
+        card.className = "youtube-video-card";
+        card.href = "https://www.youtube.com/watch?v=" + videoId;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+
+        const image = document.createElement("img");
+        image.src = snippet.thumbnails?.high?.url ||
+                    snippet.thumbnails?.medium?.url || "";
+        image.alt = "";
+
+        const title = document.createElement("div");
+        title.className = "youtube-video-title";
+        title.textContent = snippet.title;
+
+        card.append(image, title);
+        container.appendChild(card);
+      });
+
+      if (videos.length > INITIAL_COUNT) {
+        const button = document.createElement("button");
+        button.className = "youtube-more-button";
+        button.textContent = showingAll ? "閉じる ▲" : "もっと見る ▼";
+
+        button.onclick = () => {
+          showingAll = !showingAll;
+          renderVideos();
+        };
+
+        container.appendChild(button);
+      }
+    }
+
+    renderVideos();
+
+  } catch (error) {
+    console.error(error);
+    container.textContent = "動画を読み込めませんでした。";
+  }
+}
+
+loadPlaylist();
+</script>
+</body>
+</html>
