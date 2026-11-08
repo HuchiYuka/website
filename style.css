@@ -871,3 +871,109 @@ footer small {
 .youtube-more-button:hover {
   background: #effaf6;
 }
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+/* セクション全体 */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* トップの文字 */
+.hero-reveal {
+  animation: heroFadeUp 1.2s ease both;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   POP POP CARDS
+========================= */
+
+.activity-card,
+.link-card,
+.profile-card,
+.song-card {
+  opacity: 0;
+  transform: translateY(25px) scale(0.92);
+}
+
+/* 表示されたセクションのカード */
+.reveal.show .activity-card,
+.reveal.show .link-card,
+.reveal.show .profile-card,
+.reveal.show .song-card {
+  animation: popIn 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.85);
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ゲームカードの順番 */
+.activity-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.activity-card:nth-child(3) {
+  animation-delay: 0.30s;
+}
+
+.activity-card:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+/* リンクカードの順番 */
+.link-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+/* 動きを減らす設定 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.show,
+  .activity-card,
+  .link-card,
+  .profile-card,
+  .song-card,
+  .hero-reveal {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
