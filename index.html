@@ -309,13 +309,23 @@
     observer.observe(element);
   });
 
-  // 別ページからアンカーリンクで移動してきた場合
+  // 別ページから移動してきた場合
   window.addEventListener("load", () => {
     if (window.location.hash) {
       const target = document.querySelector(window.location.hash);
 
       if (target) {
         target.classList.add("show");
+
+        target.querySelectorAll(".activity-card, .link-card")
+          .forEach((card, index) => {
+            card.style.animation = "none";
+
+            requestAnimationFrame(() => {
+              card.style.animation = "";
+              card.style.animationDelay = `${index * 0.15}s`;
+            });
+          });
 
         setTimeout(() => {
           target.scrollIntoView({
