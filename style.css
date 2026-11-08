@@ -496,15 +496,6 @@ footer small {
   }
 }
 
-/* 動きを控えたい設定の端末ではアニメーションを停止 */
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-decoration img,
-  .hero-character {
-    animation: none;
-  }
-}
-
 /* =========================
    SONG SECTION
 ========================= */
@@ -959,21 +950,5 @@ footer small {
 /* リンクカードの順番 */
 .link-card:nth-child(2) {
   animation-delay: 0.15s;
-}
-
-/* 動きを減らす設定 */
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .reveal.show,
-  .activity-card,
-  .link-card,
-  .profile-card,
-  .song-card,
-  .hero-reveal {
-    opacity: 1;
-    transform: none;
-    animation: none !important;
-    transition: none !important;
-  }
 }
 
