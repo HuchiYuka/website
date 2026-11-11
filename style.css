@@ -1129,48 +1129,44 @@ footer small {
    POP GAME CARDS
 ========================= */
 
-.game-card {
+#games .game-card {
   position: relative;
-  overflow: hidden;
-  align-self: start;
+  align-self: flex-start;
   min-height: 220px;
-  border: 3px solid #fff;
-  outline: 2px dashed #a6dfce;
-  outline-offset: 4px;
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    background 0.35s ease;
+  opacity: 1;
+  transform: none;
+  overflow: hidden;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* キャッチコピー */
-.game-card .game-catch {
+#games .game-card .game-catch {
   color: #927c82;
   font-size: 12px;
   margin-top: 8px;
 }
 
-/* 詳細部分 */
-.game-card .game-detail {
+/* 詳細部分：最初は閉じる */
+#games .game-card .game-detail {
   display: block;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transform: translateY(12px) scale(0.96);
-  background: #fff0f4;
+  background: #fff0f5;
   border-radius: 15px;
   padding: 0 12px;
   margin-top: 0;
+  transform: translateY(8px);
   transition:
     max-height 0.4s ease,
     opacity 0.3s ease,
-    transform 0.35s ease,
+    transform 0.3s ease,
     padding 0.3s ease,
     margin 0.3s ease;
 }
 
 /* 詳細の文字 */
-.game-card .game-detail p {
+#games .game-card .game-detail p {
   color: #78666b;
   font-size: 12px;
   line-height: 1.9;
@@ -1178,7 +1174,7 @@ footer small {
 }
 
 /* 詳細の見出し */
-.game-card .game-detail::before {
+#games .game-card .game-detail::before {
   content: "♡ PLAY STYLE";
   display: block;
   color: #c47e98;
@@ -1188,26 +1184,25 @@ footer small {
   margin-bottom: 6px;
 }
 
-/* ホバー時 */
-.game-card:hover,
-.game-card:focus-within {
-  transform: translateY(-8px) rotate(-1deg);
+/* 1枚ずつホバー */
+#games .game-card:hover {
   background: #f7fffb;
   box-shadow: 0 12px 25px #a4d8c655;
+  outline-color: #e9a8bd;
   z-index: 5;
 }
 
-.game-card:hover .game-detail,
-.game-card:focus-within .game-detail {
+/* ホバーしたカードだけ詳細を表示 */
+#games .game-card:hover .game-detail {
   max-height: 160px;
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
   padding: 12px;
   margin-top: 14px;
 }
 
 /* ヒント */
-.game-card .game-hint {
+#games .game-card .game-hint {
   display: block;
   margin-top: 15px;
   color: #80bdaa;
@@ -1215,15 +1210,13 @@ footer small {
   letter-spacing: 1.5px;
 }
 
-/* ホバー中はヒントを隠す */
-.game-card:hover .game-hint,
-.game-card:focus-within .game-hint {
+#games .game-card:hover .game-hint {
   display: none;
 }
 
-/* スマホ */
+/* スマホでは詳細を常に表示 */
 @media (max-width: 700px) {
-  .game-card .game-detail {
+  #games .game-card .game-detail {
     max-height: none;
     opacity: 1;
     transform: none;
@@ -1231,30 +1224,7 @@ footer small {
     margin-top: 14px;
   }
 
-  .game-card .game-hint {
+  #games .game-card .game-hint {
     display: none;
   }
 }
-
-/* GAMESカードの表示修正 */
-#games .game-card {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* スクロール表示アニメーションとの併用 */
-#games.reveal.show .game-card {
-  animation: gameCardShow 0.65s ease both;
-}
-
-@keyframes gameCardShow {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
