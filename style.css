@@ -1126,27 +1126,21 @@ footer small {
 }
 
 /* =========================
-   POP GAME CARDS
+   SMOOTH GAME CARD HOVER
 ========================= */
 
 #games .game-card {
   position: relative;
   align-self: flex-start;
-  min-height: 220px;
   opacity: 1;
-  transform: none;
-  overflow: hidden;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(0);
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.55s ease,
+    background 0.45s ease;
 }
 
-/* キャッチコピー */
-#games .game-card .game-catch {
-  color: #927c82;
-  font-size: 12px;
-  margin-top: 8px;
-}
-
-/* 詳細部分：最初は閉じる */
+/* 詳細欄 */
 #games .game-card .game-detail {
   display: block;
   max-height: 0;
@@ -1156,13 +1150,13 @@ footer small {
   border-radius: 15px;
   padding: 0 12px;
   margin-top: 0;
-  transform: translateY(8px);
+  transform: translateY(-8px);
   transition:
-    max-height 0.4s ease,
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    padding 0.3s ease,
-    margin 0.3s ease;
+    max-height 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.45s ease,
+    margin 0.45s ease;
 }
 
 /* 詳細の文字 */
@@ -1173,7 +1167,7 @@ footer small {
   text-align: left;
 }
 
-/* 詳細の見出し */
+/* 見出し */
 #games .game-card .game-detail::before {
   content: "♡ PLAY STYLE";
   display: block;
@@ -1184,17 +1178,17 @@ footer small {
   margin-bottom: 6px;
 }
 
-/* 1枚ずつホバー */
+/* カードを乗せたとき */
 #games .game-card:hover {
+  transform: translateY(-6px);
   background: #f7fffb;
   box-shadow: 0 12px 25px #a4d8c655;
-  outline-color: #e9a8bd;
   z-index: 5;
 }
 
-/* ホバーしたカードだけ詳細を表示 */
+/* 詳細欄がふわっと開く */
 #games .game-card:hover .game-detail {
-  max-height: 160px;
+  max-height: 180px;
   opacity: 1;
   transform: translateY(0);
   padding: 12px;
@@ -1204,17 +1198,14 @@ footer small {
 /* ヒント */
 #games .game-card .game-hint {
   display: block;
-  margin-top: 15px;
-  color: #80bdaa;
-  font-size: 9px;
-  letter-spacing: 1.5px;
+  transition: opacity 0.25s ease;
 }
 
 #games .game-card:hover .game-hint {
-  display: none;
+  opacity: 0;
 }
 
-/* スマホでは詳細を常に表示 */
+/* スマホ */
 @media (max-width: 700px) {
   #games .game-card .game-detail {
     max-height: none;
@@ -1222,6 +1213,7 @@ footer small {
     transform: none;
     padding: 12px;
     margin-top: 14px;
+    transition: none;
   }
 
   #games .game-card .game-hint {
