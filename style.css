@@ -1174,3 +1174,126 @@ footer small {
     font-size: 17px;
   }
 }
+
+/* =========================
+   HISTORY デザイン調整
+========================= */
+
+/* カテゴリボタン */
+.history-filter {
+  border: 1px solid #c9ded6;
+  background: #ffffff;
+  color: #668078;
+  border-radius: 30px;
+  padding: 10px 22px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.history-filter:hover {
+  background: #edf7f2;
+  color: #41685f;
+}
+
+.history-filter.active {
+  background: #8dbdaf;
+  border-color: #8dbdaf;
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(90, 145, 125, 0.18);
+}
+
+/* 年の見出し */
+.history-year {
+  color: #52786d;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+  margin: 35px 0 20px;
+}
+
+/* タイムラインの日付 */
+.history-date {
+  color: #426b60 !important;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  opacity: 1 !important;
+  text-shadow: none;
+}
+
+/* カード本体 */
+.history-content {
+  background: #ffffff;
+  border: 1px solid #e5eee9;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(91, 125, 111, 0.07);
+  color: #66565b;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.history-content:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(91, 125, 111, 0.12);
+}
+
+/* カテゴリタグ */
+.history-tag {
+  display: inline-block;
+  color: #548477;
+  background: #edf6f1;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+/* タイトル */
+.history-content h3 {
+  color: #55464b;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+/* 説明文 */
+.history-content p {
+  color: #766a6d;
+  line-height: 1.8;
+}
+
+/* 作品リンク */
+.history-content > a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #548477;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.history-content > a:hover {
+  color: #345f53;
+  text-decoration: underline;
+}
+
+/* スマホ表示 */
+@media (max-width: 600px) {
+  .history-content {
+    padding: 18px;
+  }
+
+  .history-date {
+    font-size: 0.95rem;
+  }
+
+  .history-content h3 {
+    font-size: 1rem;
+  }
+
+  .history-filter {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+}
