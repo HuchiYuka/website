@@ -14,153 +14,215 @@
     <nav>
       <a href="index.html#profile">PROFILE</a>
       <a href="history.html">HISTORY</a>
-      <a href="./index.html#links">LINK</a>
+      <a href="index.html#links">LINK</a>
     </nav>
   </header>
 
   <main>
-      <section id="history" class="content-section history-section">
+    <section id="history" class="content-section history-section">
+
       <p class="section-subtitle">My Activity Record</p>
       <h2 class="section-title">HISTORY</h2>
       <p class="history-intro">
-        これまで参加した企画や、歌の活動をまとめています。
+        歌、ゲーム、イベント、そしてふちゆか自身のこと。
+        <br>
+        これまでの活動をまとめています。
       </p>
 
-      <div class="history-list">
-  
-        <div class="history-item">
-          <div class="history-date">2026</div>
-          <div class="history-content">
-            <span class="history-tag">EVENT</span>
-           <h3>VocaDuo2026 参加</h3>
-            <p>参加作品「ゆめ色わたあめ」</p>
-            <a href="https://www.nicovideo.jp/watch/sm46475208?from=0"
-               target="_blank" rel="noopener noreferrer">
-              作品を聴く
-            </a>
-          </div>
+      <!-- カテゴリ切り替え -->
+      <div class="history-filters">
+        <button class="history-filter active" data-filter="all">ALL</button>
+        <button class="history-filter" data-filter="sing">🎤 SING</button>
+        <button class="history-filter" data-filter="game">🎮 GAME</button>
+        <button class="history-filter" data-filter="event">🏆 EVENT</button>
+        <button class="history-filter" data-filter="about">🌱 ABOUT</button>
+      </div>
+
+      <!-- 年表 -->
+      <div class="history-timeline">
+
+        <!-- 2026 -->
+        <div class="history-year">
+          <span>2026</span>
         </div>
 
-        <div class="history-item">
+        <!-- VocaDuo -->
+        <article class="history-item" data-category="sing">
           <div class="history-date">2026</div>
           <div class="history-content">
-            <span class="history-tag">RANKING</span>
+            <span class="history-tag">SING / EVENT</span>
+            <h3>VocaDuo2026 参加</h3>
+            <p>参加作品「ゆめ色わたあめ」</p>
+            <a href="https://www.nicovideo.jp/watch/sm46475208"
+               target="_blank" rel="noopener noreferrer">
+              作品を聴く ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 歌コレ -->
+        <article class="history-item" data-category="sing">
+          <div class="history-date">2026</div>
+          <div class="history-content">
+            <span class="history-tag">SING / RANKING</span>
             <h3>歌コレ2026秋</h3>
             <p>ルーキー部門 76位</p>
             <p>「撫でんな / 柊マグネタイト」</p>
-            <a href="https://www.nicovideo.jp/watch/sm46842574?from=0"
+            <a href="https://www.nicovideo.jp/watch/sm46842574"
                target="_blank" rel="noopener noreferrer">
-              作品を聴く
+              作品を聴く ↗
             </a>
           </div>
-        </div>
+        </article>
 
-       
-     <div class="history-item">
-       <div class="history-date">other</div>
-       <div class="history-content">
-        <span class="history-tag">COLLABORATION</span>
-        <h3>合唱・コラボ企画</h3>
-        <p>これまで参加した合唱やコラボ作品はこちら！</p>
+        <!-- 合唱・コラボ -->
+        <article class="history-item" data-category="sing">
+          <div class="history-date">随時</div>
+          <div class="history-content">
+            <span class="history-tag">SING / COLLABORATION</span>
+            <h3>合唱・コラボ企画</h3>
+            <p>これまで参加した合唱やコラボ作品はこちら！</p>
 
-        <div id="collab-videos" class="youtube-video-grid">
-          <p id="collab-status">動画を読み込んでいます...</p>
-        </div>
+            <div id="collab-videos" class="youtube-video-grid">
+              <p id="collab-status">動画を読み込んでいます...</p>
+            </div>
+          </div>
+        </article>
+
+        <!--
+        実績を追加するときは、下のテンプレートをコピー！
+
+        <article class="history-item" data-category="game">
+          <div class="history-date">2026.XX</div>
+          <div class="history-content">
+            <span class="history-tag">GAME</span>
+            <h3>イベント名</h3>
+            <p>活動内容・担当したこと</p>
+          </div>
+        </article>
+
+        カテゴリは sing / game / event / about から選んでね。
+        -->
+
       </div>
-     </div>
-
-      </div>
-     </section>
+    </section>
   </main>
 
   <footer>
     <p>© HUCHIYUKA</p>
   </footer>
 
+  <script>
+    // カテゴリ切り替え
+    const filterButtons = document.querySelectorAll(".history-filter");
+    const historyItems = document.querySelectorAll(".history-item");
 
-<script>
-const API_KEY = "AIzaSyBgcpIpT0VhfdGO8Q5bF3KE_3-58BkH2F4";
-const PLAYLIST_ID = "PL5ugFQ27GsimiJ22c3AkXXMIP0Ac-EWKO";
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
 
-async function loadPlaylist() {
-  const container = document.getElementById("collab-videos");
+        filterButtons.forEach(btn => {
+          btn.classList.remove("active");
+        });
 
-  try {
-    const params = new URLSearchParams({
-      part: "snippet",
-      playlistId: PLAYLIST_ID,
-      maxResults: "50",
-      key: API_KEY
+        button.classList.add("active");
+
+        historyItems.forEach(item => {
+          const category = item.dataset.category;
+
+          if (filter === "all" || category === filter) {
+            item.classList.remove("hidden");
+          } else {
+            item.classList.add("hidden");
+          }
+        });
+      });
     });
 
-    const response = await fetch(
-      "https://www.googleapis.com/youtube/v3/playlistItems?" + params
-    );
+    // YouTube 合唱・コラボ動画一覧
+    const API_KEY = "YOUR_API_KEY";
+    const PLAYLIST_ID = "PL5ugFQ27GsimiJ22c3AkXXMIP0Ac-EWKO";
 
-    const data = await response.json();
+    async function loadPlaylist() {
+      const container = document.getElementById("collab-videos");
 
-    if (!response.ok) {
-      throw new Error(data.error?.message || "取得に失敗しました");
-    }
+      try {
+        const params = new URLSearchParams({
+          part: "snippet",
+          playlistId: PLAYLIST_ID,
+          maxResults: "50",
+          key: API_KEY
+        });
 
-    const videos = data.items || [];
-    const INITIAL_COUNT = 4;
-    let showingAll = false;
+        const response = await fetch(
+          "https://www.googleapis.com/youtube/v3/playlistItems?" + params
+        );
 
-    function renderVideos() {
-      container.replaceChildren();
+        const data = await response.json();
 
-      const visibleVideos = showingAll
-        ? videos
-        : videos.slice(0, INITIAL_COUNT);
+        if (!response.ok) {
+          throw new Error(data.error?.message || "取得に失敗しました");
+        }
 
-      visibleVideos.forEach(item => {
-        const snippet = item.snippet;
-        const videoId = snippet?.resourceId?.videoId;
-        if (!videoId) return;
+        const videos = data.items || [];
+        const INITIAL_COUNT = 4;
+        let showingAll = false;
 
-        const card = document.createElement("a");
-        card.className = "youtube-video-card";
-        card.href = "https://www.youtube.com/watch?v=" + videoId;
-        card.target = "_blank";
-        card.rel = "noopener noreferrer";
+        function renderVideos() {
+          container.replaceChildren();
 
-        const image = document.createElement("img");
-        image.src = snippet.thumbnails?.high?.url ||
-                    snippet.thumbnails?.medium?.url || "";
-        image.alt = "";
+          const visibleVideos = showingAll
+            ? videos
+            : videos.slice(0, INITIAL_COUNT);
 
-        const title = document.createElement("div");
-        title.className = "youtube-video-title";
-        title.textContent = snippet.title;
+          visibleVideos.forEach(item => {
+            const snippet = item.snippet;
+            const videoId = snippet?.resourceId?.videoId;
+            if (!videoId) return;
 
-        card.append(image, title);
-        container.appendChild(card);
-      });
+            const card = document.createElement("a");
+            card.className = "youtube-video-card";
+            card.href = "https://www.youtube.com/watch?v=" + videoId;
+            card.target = "_blank";
+            card.rel = "noopener noreferrer";
 
-      if (videos.length > INITIAL_COUNT) {
-        const button = document.createElement("button");
-        button.className = "youtube-more-button";
-        button.textContent = showingAll ? "閉じる ▲" : "もっと見る ▼";
+            const image = document.createElement("img");
+            image.src = snippet.thumbnails?.high?.url ||
+                        snippet.thumbnails?.medium?.url || "";
+            image.alt = "";
 
-        button.onclick = () => {
-          showingAll = !showingAll;
-          renderVideos();
-        };
+            const title = document.createElement("div");
+            title.className = "youtube-video-title";
+            title.textContent = snippet.title;
 
-        container.appendChild(button);
+            card.append(image, title);
+            container.appendChild(card);
+          });
+
+          if (videos.length > INITIAL_COUNT) {
+            const button = document.createElement("button");
+            button.className = "youtube-more-button";
+            button.textContent = showingAll ? "閉じる ▲" : "もっと見る ▼";
+
+            button.onclick = () => {
+              showingAll = !showingAll;
+              renderVideos();
+            };
+
+            container.appendChild(button);
+          }
+        }
+
+        renderVideos();
+
+      } catch (error) {
+        console.error(error);
+        container.textContent = "動画を読み込めませんでした。";
       }
     }
 
-    renderVideos();
+    loadPlaylist();
+  </script>
 
-  } catch (error) {
-    console.error(error);
-    container.textContent = "動画を読み込めませんでした。";
-  }
-}
-
-loadPlaylist();
-</script>
 </body>
 </html>
