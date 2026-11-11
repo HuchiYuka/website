@@ -1134,26 +1134,28 @@ footer small {
   overflow: hidden;
   cursor: default;
   min-height: 220px;
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+  align-self: start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.game-card .game-catch {
-  color: #927c82;
-  font-size: 12px;
-  margin-top: 8px;
-}
-
+/* 詳細情報：最初は隠す */
 .game-card .game-detail {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transform: translateY(8px);
-  transition:
-    max-height 0.4s ease,
-    opacity 0.3s ease,
-    transform 0.3s ease;
+  display: none;
+  margin-top: 12px;
+}
+
+/* カーソルを合わせたカードだけ表示 */
+.game-card:hover .game-detail,
+.game-card:focus-within .game-detail {
+  display: block;
+}
+
+/* カード自体も個別に浮かせる */
+.game-card:hover,
+.game-card:focus-within {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 25px #a4d8c655;
+  z-index: 5;
 }
 
 .game-card .game-detail p {
@@ -1168,36 +1170,12 @@ footer small {
   color: #80bdaa;
   font-size: 9px;
   letter-spacing: 1.5px;
-  transition: opacity 0.2s;
 }
 
-/* カーソルを合わせたとき */
-
-.game-card:hover,
-.game-card:focus-within {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 25px #a4d8c655;
-}
-
-.game-card:hover .game-detail,
-.game-card:focus-within .game-detail {
-  max-height: 150px;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.game-card:hover .game-hint,
-.game-card:focus-within .game-hint {
-  opacity: 0;
-}
-
-/* スマホでは詳細を最初から表示 */
-
+/* スマホでは詳細を常に表示 */
 @media (max-width: 700px) {
   .game-card .game-detail {
-    max-height: 150px;
-    opacity: 1;
-    transform: translateY(0);
+    display: block;
     margin-top: 12px;
   }
 
@@ -1205,26 +1183,3 @@ footer small {
     display: none;
   }
 }
-
-/* GAMESカードの表示修正 */
-#games .game-card {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* スクロール表示アニメーションとの併用 */
-#games.reveal.show .game-card {
-  animation: gameCardShow 0.65s ease both;
-}
-
-@keyframes gameCardShow {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
