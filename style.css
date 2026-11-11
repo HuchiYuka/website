@@ -651,95 +651,6 @@ footer small {
 }
 
 
-/* HISTORY */
-.history-section {
-  text-align: center;
-}
-
-.history-intro {
-  color: #777;
-  margin-bottom: 40px;
-}
-
-.history-list {
-  max-width: 850px;
-  margin: 0 auto;
-  text-align: left;
-  position: relative;
-}
-
-.history-item {
-  display: flex;
-  gap: 25px;
-  margin-bottom: 25px;
-  align-items: stretch;
-}
-
-.history-date {
-  flex: 0 0 100px;
-  align-self: flex-start;
-  text-align: center;
-  padding: 12px 5px;
-  color: white;
-  background: #75c5b2;
-  border-radius: 14px;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.history-content {
-  flex: 1;
-  background: white;
-  border: 2px solid #d9eee8;
-  border-radius: 18px;
-  padding: 22px 25px;
-  box-shadow: 0 5px 15px #b8ded522;
-}
-
-.history-tag {
-  color: #e58eaf;
-  font-size: 11px;
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-.history-content h3 {
-  color: #579f90;
-  margin: 8px 0;
-}
-
-.history-content p {
-  color: #777;
-  margin: 5px 0;
-}
-
-.history-content a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #579f90;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.history-content a:hover {
-  color: #e58eaf;
-}
-
-@media (max-width: 600px) {
-  .history-item {
-    gap: 12px;
-  }
-
-  .history-date {
-    flex-basis: 65px;
-    font-size: 14px;
-  }
-
-  .history-content {
-    padding: 18px 15px;
-  }
-}
-
 /* OTHER WORKS の配置修正 */
 .other-works {
   display: grid;
@@ -952,11 +863,21 @@ footer small {
   animation-delay: 0.15s;
 }
 
-
 /* =========================
    HISTORY TIMELINE
 ========================= */
 
+.history-section {
+  text-align: center;
+}
+
+.history-intro {
+  color: #78666b;
+  line-height: 2;
+  margin-bottom: 35px;
+}
+
+/* カテゴリボタン */
 .history-filters {
   display: flex;
   justify-content: center;
@@ -966,11 +887,11 @@ footer small {
 }
 
 .history-filter {
-  padding: 11px 23px;
-  border: 2px solid #c8eadd;
+  padding: 11px 24px;
+  border: 1px solid #c9e4d9;
   border-radius: 30px;
-  background: white;
-  color: #72bda8;
+  background: #fff;
+  color: #477568;
   font-size: 13px;
   font-weight: bold;
   cursor: pointer;
@@ -978,22 +899,23 @@ footer small {
 }
 
 .history-filter:hover {
-  background: #effff8;
-  transform: translateY(-3px);
+  background: #edf8f2;
+  transform: translateY(-2px);
 }
 
 .history-filter.active {
-  background: #80ccb6;
-  border-color: #80ccb6;
-  color: white;
-  box-shadow: 0 4px 0 #5da991;
+  background: #75bda8;
+  border-color: #75bda8;
+  color: #fff;
+  box-shadow: 0 3px 9px #75bda833;
 }
 
+/* タイムライン全体 */
 .history-timeline {
-  max-width: 950px;
+  max-width: 1000px;
   margin: 0 auto;
   position: relative;
-  padding: 10px 0;
+  padding: 10px 0 30px;
 }
 
 /* 中央の縦線 */
@@ -1004,11 +926,11 @@ footer small {
   bottom: 0;
   left: 50%;
   width: 3px;
-  background: #c9eadf;
+  background: #cce8dc;
   transform: translateX(-50%);
 }
 
-/* 年の表示 */
+/* 年の見出し */
 .history-year {
   position: relative;
   z-index: 2;
@@ -1019,33 +941,41 @@ footer small {
 
 .history-year span {
   display: inline-block;
-  padding: 10px 28px;
-  background: #80ccb6;
-  color: white;
+  padding: 9px 27px;
+  background: #75bda8;
+  color: #fff;
   border-radius: 30px;
+  font-size: 18px;
   font-weight: bold;
-  font-size: 20px;
-  box-shadow: 0 4px 0 #5da991;
+  letter-spacing: 2px;
+  box-shadow: 0 3px 0 #559c87;
 }
 
-/* タイムラインのカード */
+/* フィルターで非表示 */
+.history-year.hidden,
+.history-item.hidden {
+  display: none;
+}
+
+/* 各項目 */
 .history-item {
   width: 50%;
   position: relative;
-  padding: 15px 40px 35px 0;
+  padding: 15px 45px 35px 0;
   text-align: left;
 }
 
+/* 左右交互に配置 */
 .history-item:nth-of-type(even) {
   margin-left: 50%;
-  padding: 15px 0 35px 40px;
+  padding: 15px 0 35px 45px;
 }
 
 /* 中央の丸 */
 .history-item::after {
   content: "";
   position: absolute;
-  top: 32px;
+  top: 30px;
   right: -9px;
   width: 15px;
   height: 15px;
@@ -1060,65 +990,77 @@ footer small {
   left: -9px;
 }
 
-/* 年月 */
+/* 日付 */
 .history-date {
-  color: #e5a1b3;
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  display: inline-block;
+  color: #285f50;
+  background: #e3f4ec;
+  border: 1px solid #c9e8da;
+  border-radius: 20px;
+  padding: 7px 15px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  opacity: 1;
 }
 
-/* カード本体 */
+/* カード */
 .history-content {
-  background: white;
-  border: 2px solid #d9eee8;
-  border-radius: 22px;
-  padding: 25px;
-  box-shadow: 0 6px 18px #b8ded522;
-  transition: 0.3s;
+  background: #fff;
+  border: 1px solid #e2eee7;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 5px 18px rgba(84, 130, 109, 0.09);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .history-content:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 22px #b8ded544;
+  transform: translateY(-4px);
+  box-shadow: 0 9px 22px rgba(84, 130, 109, 0.15);
 }
 
+/* カテゴリタグ */
 .history-tag {
   display: inline-block;
-  color: #e58eaf;
-  font-size: 11px;
-  letter-spacing: 2px;
-  font-weight: bold;
+  color: #548477;
+  background: #edf7f1;
+  border-radius: 20px;
+  padding: 5px 11px;
   margin-bottom: 8px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: bold;
 }
 
+/* タイトル */
 .history-content h3 {
-  color: #579f90;
-  margin: 5px 0 12px;
-  font-size: 18px;
+  color: #51434a;
+  margin: 5px 0 10px;
+  font-size: 17px;
+  line-height: 1.7;
 }
 
+/* 説明文 */
 .history-content p {
-  color: #777;
-  line-height: 1.8;
+  color: #706267;
+  line-height: 1.9;
   font-size: 13px;
+  margin: 5px 0;
 }
 
+/* 作品リンク */
 .history-content > a {
   display: inline-block;
-  margin-top: 15px;
-  color: #579f90;
+  margin-top: 12px;
+  color: #397966;
   font-weight: bold;
   text-decoration: none;
 }
 
 .history-content > a:hover {
-  color: #e58eaf;
-}
-
-/* フィルターで非表示 */
-.history-item.hidden {
-  display: none;
+  color: #d87998;
+  text-decoration: underline;
 }
 
 /* 合唱動画 */
@@ -1127,15 +1069,15 @@ footer small {
   margin-top: 20px;
 }
 
+/* スマートフォン */
 @media (max-width: 700px) {
-
   .history-filters {
     gap: 8px;
     margin: 25px auto 40px;
   }
 
   .history-filter {
-    padding: 9px 15px;
+    padding: 9px 16px;
     font-size: 11px;
   }
 
@@ -1161,139 +1103,25 @@ footer small {
     top: 28px;
   }
 
-  .history-content {
-    padding: 20px 17px;
-  }
-
   .history-year {
     text-align: left;
     margin: 25px 0 20px -30px;
   }
 
   .history-year span {
-    font-size: 17px;
-  }
-}
-
-/* =========================
-   HISTORY デザイン調整
-========================= */
-
-/* カテゴリボタン */
-.history-filter {
-  border: 1px solid #c9ded6;
-  background: #ffffff;
-  color: #668078;
-  border-radius: 30px;
-  padding: 10px 22px;
-  font-weight: 600;
-  transition: 0.25s;
-}
-
-.history-filter:hover {
-  background: #edf7f2;
-  color: #41685f;
-}
-
-.history-filter.active {
-  background: #8dbdaf;
-  border-color: #8dbdaf;
-  color: #ffffff;
-  box-shadow: 0 3px 10px rgba(90, 145, 125, 0.18);
-}
-
-/* 年の見出し */
-.history-year {
-  color: #52786d;
-  font-weight: 700;
-  letter-spacing: 2px;
-  font-size: 1.1rem;
-  margin: 35px 0 20px;
-}
-
-/* タイムラインの日付 */
-.history-date {
-  color: #426b60 !important;
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  opacity: 1 !important;
-  text-shadow: none;
-}
-
-/* カード本体 */
-.history-content {
-  background: #ffffff;
-  border: 1px solid #e5eee9;
-  border-radius: 14px;
-  padding: 24px;
-  box-shadow: 0 4px 16px rgba(91, 125, 111, 0.07);
-  color: #66565b;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.history-content:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 20px rgba(91, 125, 111, 0.12);
-}
-
-/* カテゴリタグ */
-.history-tag {
-  display: inline-block;
-  color: #548477;
-  background: #edf6f1;
-  border-radius: 20px;
-  padding: 5px 12px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-}
-
-/* タイトル */
-.history-content h3 {
-  color: #55464b;
-  font-size: 1.12rem;
-  line-height: 1.6;
-  margin-bottom: 8px;
-}
-
-/* 説明文 */
-.history-content p {
-  color: #766a6d;
-  line-height: 1.8;
-}
-
-/* 作品リンク */
-.history-content > a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #548477;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.history-content > a:hover {
-  color: #345f53;
-  text-decoration: underline;
-}
-
-/* スマホ表示 */
-@media (max-width: 600px) {
-  .history-content {
-    padding: 18px;
+    font-size: 16px;
   }
 
   .history-date {
-    font-size: 0.95rem;
+    font-size: 13px;
+  }
+
+  .history-content {
+    padding: 19px 16px;
   }
 
   .history-content h3 {
-    font-size: 1rem;
-  }
-
-  .history-filter {
-    padding: 8px 15px;
-    font-size: 0.85rem;
+    font-size: 15px;
   }
 }
+
