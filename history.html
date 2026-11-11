@@ -24,7 +24,7 @@
       <p class="section-subtitle">My Activity Record</p>
       <h2 class="section-title">HISTORY</h2>
       <p class="history-intro">
-        歌、ゲーム、イベント、そしてふちゆか自身のこと。
+        歌、イベント、そしてふちゆか自身のこと。
         <br>
         これまでの活動をまとめています。
       </p>
@@ -33,7 +33,6 @@
       <div class="history-filters">
         <button class="history-filter active" data-filter="all">ALL</button>
         <button class="history-filter" data-filter="sing">🎤 SING</button>
-        <button class="history-filter" data-filter="game">🎮 GAME</button>
         <button class="history-filter" data-filter="event">🏆 EVENT</button>
         <button class="history-filter" data-filter="about">🌱 ABOUT</button>
       </div>
@@ -41,14 +40,52 @@
       <!-- 年表 -->
       <div class="history-timeline">
 
+        <!-- 活動開始 -->
+        <article class="history-item" data-category="about">
+          <div class="history-date">6月20日</div>
+          <div class="history-content">
+            <span class="history-tag">ABOUT</span>
+            <h3>活動開始</h3>
+          </div>
+        </article>
+
+        <!-- 2025 -->
+        <div class="history-year" data-year="2025">
+          <span>2025</span>
+        </div>
+
+        <article class="history-item" data-category="about" data-year="2025">
+          <div class="history-date">2025.11.11</div>
+          <div class="history-content">
+            <span class="history-tag">ABOUT</span>
+            <h3>YouTubeゲームチャンネル開設</h3>
+            <p>「ふちゆかの遊び場」開設</p>
+          </div>
+        </article>
+
         <!-- 2026 -->
-        <div class="history-year">
+        <div class="history-year" data-year="2026">
           <span>2026</span>
         </div>
 
-        <!-- VocaDuo -->
-        <article class="history-item" data-category="sing">
-          <div class="history-date">2026</div>
+        <article class="history-item" data-category="about" data-year="2026">
+          <div class="history-date">2026.04</div>
+          <div class="history-content">
+            <span class="history-tag">ABOUT</span>
+            <h3>ニコニコ動画アカウント開設</h3>
+          </div>
+        </article>
+
+        <article class="history-item" data-category="event" data-year="2026">
+          <div class="history-date">2026.06.06</div>
+          <div class="history-content">
+            <span class="history-tag">EVENT</span>
+            <h3>APEXカスタム初参加</h3>
+          </div>
+        </article>
+
+        <article class="history-item" data-category="sing" data-year="2026">
+          <div class="history-date">2026.06.26</div>
           <div class="history-content">
             <span class="history-tag">SING / EVENT</span>
             <h3>VocaDuo2026 参加</h3>
@@ -60,9 +97,26 @@
           </div>
         </article>
 
-        <!-- 歌コレ -->
-        <article class="history-item" data-category="sing">
-          <div class="history-date">2026</div>
+        <article class="history-item" data-category="event" data-year="2026">
+          <div class="history-date">2026.08.30</div>
+          <div class="history-content">
+            <span class="history-tag">EVENT / HOST</span>
+            <h3>【初主催】みんなでAPEXカスタム！</h3>
+            <p>チームデスマッチ総当たり戦</p>
+          </div>
+        </article>
+
+        <article class="history-item" data-category="event" data-year="2026">
+          <div class="history-date">2026.09.22</div>
+          <div class="history-content">
+            <span class="history-tag">EVENT / CO-HOST</span>
+            <h3>せい！ゆか！カスタム デスゲーム編</h3>
+            <p>共同主催</p>
+          </div>
+        </article>
+
+        <article class="history-item" data-category="sing" data-year="2026">
+          <div class="history-date">2026.09.25</div>
           <div class="history-content">
             <span class="history-tag">SING / RANKING</span>
             <h3>歌コレ2026秋</h3>
@@ -75,8 +129,20 @@
           </div>
         </article>
 
-        <!-- 合唱・コラボ -->
-        <article class="history-item" data-category="sing">
+        <article class="history-item" data-category="event" data-year="2026">
+          <div class="history-date">2026.10.18</div>
+          <div class="history-content">
+            <span class="history-tag">EVENT</span>
+            <h3>Splatoon3 敵友！交流カスタム！</h3>
+          </div>
+        </article>
+
+        <!-- 随時更新 -->
+        <div class="history-year" data-year="ongoing">
+          <span>ONGOING</span>
+        </div>
+
+        <article class="history-item" data-category="sing" data-year="ongoing">
           <div class="history-date">随時</div>
           <div class="history-content">
             <span class="history-tag">SING / COLLABORATION</span>
@@ -88,21 +154,6 @@
             </div>
           </div>
         </article>
-
-        <!--
-        実績を追加するときは、下のテンプレートをコピー！
-
-        <article class="history-item" data-category="game">
-          <div class="history-date">2026.XX</div>
-          <div class="history-content">
-            <span class="history-tag">GAME</span>
-            <h3>イベント名</h3>
-            <p>活動内容・担当したこと</p>
-          </div>
-        </article>
-
-        カテゴリは sing / game / event / about から選んでね。
-        -->
 
       </div>
     </section>
@@ -116,9 +167,37 @@
     // カテゴリ切り替え
     const filterButtons = document.querySelectorAll(".history-filter");
     const historyItems = document.querySelectorAll(".history-item");
+    const yearHeadings = document.querySelectorAll(".history-year");
+
+    function updateHistory(filter) {
+
+      // 各項目の表示・非表示
+      historyItems.forEach(item => {
+        const category = item.dataset.category;
+
+        if (filter === "all" || category === filter) {
+          item.classList.remove("hidden");
+        } else {
+          item.classList.add("hidden");
+        }
+      });
+
+      // 項目がなくなった年の見出しも非表示にする
+      yearHeadings.forEach(heading => {
+        const year = heading.dataset.year;
+
+        const hasVisibleItem = Array.from(historyItems).some(item => {
+          return item.dataset.year === year &&
+                 !item.classList.contains("hidden");
+        });
+
+        heading.classList.toggle("hidden", !hasVisibleItem);
+      });
+    }
 
     filterButtons.forEach(button => {
       button.addEventListener("click", () => {
+
         const filter = button.dataset.filter;
 
         filterButtons.forEach(btn => {
@@ -127,17 +206,10 @@
 
         button.classList.add("active");
 
-        historyItems.forEach(item => {
-          const category = item.dataset.category;
-
-          if (filter === "all" || category === filter) {
-            item.classList.remove("hidden");
-          } else {
-            item.classList.add("hidden");
-          }
-        });
+        updateHistory(filter);
       });
     });
+
 
     // YouTube 合唱・コラボ動画一覧
     const API_KEY = "YOUR_API_KEY";
@@ -178,6 +250,7 @@
           visibleVideos.forEach(item => {
             const snippet = item.snippet;
             const videoId = snippet?.resourceId?.videoId;
+
             if (!videoId) return;
 
             const card = document.createElement("a");
@@ -226,3 +299,4 @@
 
 </body>
 </html>
+
