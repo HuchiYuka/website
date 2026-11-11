@@ -1257,3 +1257,22 @@ footer small {
   max-height: none !important;
   overflow: visible !important;
 }
+
+/* GAMESの詳細欄が切れないようにする */
+#games {
+  overflow: visible;
+  position: relative;
+  z-index: 2;
+}
+
+/* ホバーしたカードを前面に */
+#games .game-card:hover {
+  z-index: 20;
+}
+
+/* 次のLINKセクション */
+#link {
+  position: relative;
+  z-index: 1;
+}
+
