@@ -1191,7 +1191,7 @@ footer small {
 
 /* 見出し */
 #games .game-card .game-detail::before {
-  content: "♡ PLAY STYLE";
+  content: "PLAY STYLE";
   display: block;
   color: #c47e98;
   font-size: 10px;
@@ -1247,3 +1247,13 @@ footer small {
   }
 }
 
+/* ゲーム詳細欄の切れを修正 */
+#games .game-card .game-detail {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+#games .game-card:hover .game-detail {
+  max-height: none !important;
+  overflow: visible !important;
+}
