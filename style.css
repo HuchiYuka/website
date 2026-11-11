@@ -1126,44 +1126,87 @@ footer small {
 }
 
 /* =========================
-   GAME CARD HOVER
+   POP GAME CARDS
 ========================= */
 
 .game-card {
   position: relative;
   overflow: hidden;
-  cursor: default;
-  min-height: 220px;
   align-self: start;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 220px;
+  border: 3px solid #fff;
+  outline: 2px dashed #a6dfce;
+  outline-offset: 4px;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
 }
 
-/* 詳細情報：最初は隠す */
+/* キャッチコピー */
+.game-card .game-catch {
+  color: #927c82;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* 詳細部分 */
 .game-card .game-detail {
-  display: none;
-  margin-top: 12px;
-}
-
-/* カーソルを合わせたカードだけ表示 */
-.game-card:hover .game-detail,
-.game-card:focus-within .game-detail {
   display: block;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(12px) scale(0.96);
+  background: #fff0f4;
+  border-radius: 15px;
+  padding: 0 12px;
+  margin-top: 0;
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    transform 0.35s ease,
+    padding 0.3s ease,
+    margin 0.3s ease;
 }
 
-/* カード自体も個別に浮かせる */
+/* 詳細の文字 */
+.game-card .game-detail p {
+  color: #78666b;
+  font-size: 12px;
+  line-height: 1.9;
+  text-align: left;
+}
+
+/* 詳細の見出し */
+.game-card .game-detail::before {
+  content: "♡ PLAY STYLE";
+  display: block;
+  color: #c47e98;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+
+/* ホバー時 */
 .game-card:hover,
 .game-card:focus-within {
-  transform: translateY(-7px);
+  transform: translateY(-8px) rotate(-1deg);
+  background: #f7fffb;
   box-shadow: 0 12px 25px #a4d8c655;
   z-index: 5;
 }
 
-.game-card .game-detail p {
-  font-size: 12px;
-  line-height: 1.9;
-  color: #78666b;
+.game-card:hover .game-detail,
+.game-card:focus-within .game-detail {
+  max-height: 160px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  padding: 12px;
+  margin-top: 14px;
 }
 
+/* ヒント */
 .game-card .game-hint {
   display: block;
   margin-top: 15px;
@@ -1172,11 +1215,20 @@ footer small {
   letter-spacing: 1.5px;
 }
 
-/* スマホでは詳細を常に表示 */
+/* ホバー中はヒントを隠す */
+.game-card:hover .game-hint,
+.game-card:focus-within .game-hint {
+  display: none;
+}
+
+/* スマホ */
 @media (max-width: 700px) {
   .game-card .game-detail {
-    display: block;
-    margin-top: 12px;
+    max-height: none;
+    opacity: 1;
+    transform: none;
+    padding: 12px;
+    margin-top: 14px;
   }
 
   .game-card .game-hint {
