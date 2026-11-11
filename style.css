@@ -952,3 +952,225 @@ footer small {
   animation-delay: 0.15s;
 }
 
+
+/* =========================
+   HISTORY TIMELINE
+========================= */
+
+.history-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 35px auto 55px;
+}
+
+.history-filter {
+  padding: 11px 23px;
+  border: 2px solid #c8eadd;
+  border-radius: 30px;
+  background: white;
+  color: #72bda8;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.history-filter:hover {
+  background: #effff8;
+  transform: translateY(-3px);
+}
+
+.history-filter.active {
+  background: #80ccb6;
+  border-color: #80ccb6;
+  color: white;
+  box-shadow: 0 4px 0 #5da991;
+}
+
+.history-timeline {
+  max-width: 950px;
+  margin: 0 auto;
+  position: relative;
+  padding: 10px 0;
+}
+
+/* 中央の縦線 */
+.history-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: #c9eadf;
+  transform: translateX(-50%);
+}
+
+/* 年の表示 */
+.history-year {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 35px 0;
+  text-align: center;
+}
+
+.history-year span {
+  display: inline-block;
+  padding: 10px 28px;
+  background: #80ccb6;
+  color: white;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 0 4px 0 #5da991;
+}
+
+/* タイムラインのカード */
+.history-item {
+  width: 50%;
+  position: relative;
+  padding: 15px 40px 35px 0;
+  text-align: left;
+}
+
+.history-item:nth-of-type(even) {
+  margin-left: 50%;
+  padding: 15px 0 35px 40px;
+}
+
+/* 中央の丸 */
+.history-item::after {
+  content: "";
+  position: absolute;
+  top: 32px;
+  right: -9px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #e99bb0;
+  border: 4px solid #fffaf5;
+  z-index: 2;
+}
+
+.history-item:nth-of-type(even)::after {
+  right: auto;
+  left: -9px;
+}
+
+/* 年月 */
+.history-date {
+  color: #e5a1b3;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* カード本体 */
+.history-content {
+  background: white;
+  border: 2px solid #d9eee8;
+  border-radius: 22px;
+  padding: 25px;
+  box-shadow: 0 6px 18px #b8ded522;
+  transition: 0.3s;
+}
+
+.history-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 22px #b8ded544;
+}
+
+.history-tag {
+  display: inline-block;
+  color: #e58eaf;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.history-content h3 {
+  color: #579f90;
+  margin: 5px 0 12px;
+  font-size: 18px;
+}
+
+.history-content p {
+  color: #777;
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.history-content > a {
+  display: inline-block;
+  margin-top: 15px;
+  color: #579f90;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.history-content > a:hover {
+  color: #e58eaf;
+}
+
+/* フィルターで非表示 */
+.history-item.hidden {
+  display: none;
+}
+
+/* 合唱動画 */
+.history-content .youtube-video-grid {
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+
+  .history-filters {
+    gap: 8px;
+    margin: 25px auto 40px;
+  }
+
+  .history-filter {
+    padding: 9px 15px;
+    font-size: 11px;
+  }
+
+  .history-timeline {
+    padding-left: 30px;
+  }
+
+  .history-timeline::before {
+    left: 10px;
+  }
+
+  .history-item,
+  .history-item:nth-of-type(even) {
+    width: 100%;
+    margin-left: 0;
+    padding: 12px 0 25px 25px;
+  }
+
+  .history-item::after,
+  .history-item:nth-of-type(even)::after {
+    left: 1px;
+    right: auto;
+    top: 28px;
+  }
+
+  .history-content {
+    padding: 20px 17px;
+  }
+
+  .history-year {
+    text-align: left;
+    margin: 25px 0 20px -30px;
+  }
+
+  .history-year span {
+    font-size: 17px;
+  }
+}
