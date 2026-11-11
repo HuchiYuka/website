@@ -1126,40 +1126,57 @@ footer small {
 }
 
 /* =========================
-   SMOOTH GAME CARD HOVER
+   FLOATING GAME DETAILS
 ========================= */
+
+#games .game-list {
+  align-items: flex-start;
+}
 
 #games .game-card {
   position: relative;
   align-self: flex-start;
+  overflow: visible;
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
   transition:
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.55s ease,
-    background 0.45s ease;
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+  z-index: 1;
 }
 
-/* 詳細欄 */
+/* 詳細欄：カードの上に重ねる */
 #games .game-card .game-detail {
+  position: absolute;
+  top: calc(100% - 5px);
+  left: -3px;
+  right: -3px;
+  z-index: 10;
+
   display: block;
   max-height: 0;
   opacity: 0;
+  visibility: hidden;
   overflow: hidden;
+
+  box-sizing: border-box;
+  padding: 0 14px;
   background: #fff0f5;
-  border-radius: 15px;
-  padding: 0 12px;
-  margin-top: 0;
-  transform: translateY(-8px);
+  border: 2px solid #fff;
+  border-radius: 0 0 22px 22px;
+  box-shadow: 0 10px 18px #d9b9c044;
+
+  transform: translateY(-10px) scale(0.97);
+  transform-origin: top center;
+
   transition:
-    max-height 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.4s ease,
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    padding 0.45s ease,
-    margin 0.45s ease;
+    max-height 0.45s ease,
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    padding 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* 詳細の文字 */
 #games .game-card .game-detail p {
   color: #78666b;
   font-size: 12px;
@@ -1167,7 +1184,6 @@ footer small {
   text-align: left;
 }
 
-/* 見出し */
 #games .game-card .game-detail::before {
   content: "♡ PLAY STYLE";
   display: block;
@@ -1178,21 +1194,20 @@ footer small {
   margin-bottom: 6px;
 }
 
-/* カードを乗せたとき */
+/* ホバー */
 #games .game-card:hover {
-  transform: translateY(-6px);
-  background: #f7fffb;
-  box-shadow: 0 12px 25px #a4d8c655;
-  z-index: 5;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 22px #a4d8c655;
+  z-index: 20;
 }
 
-/* 詳細欄がふわっと開く */
+/* 詳細を表示 */
 #games .game-card:hover .game-detail {
   max-height: 180px;
   opacity: 1;
-  transform: translateY(0);
-  padding: 12px;
-  margin-top: 14px;
+  visibility: visible;
+  padding: 14px;
+  transform: translateY(0) scale(1);
 }
 
 /* ヒント */
@@ -1207,12 +1222,19 @@ footer small {
 
 /* スマホ */
 @media (max-width: 700px) {
+  #games .game-card {
+    overflow: visible;
+  }
+
   #games .game-card .game-detail {
+    position: static;
     max-height: none;
     opacity: 1;
-    transform: none;
+    visibility: visible;
     padding: 12px;
     margin-top: 14px;
+    transform: none;
+    border-radius: 15px;
     transition: none;
   }
 
