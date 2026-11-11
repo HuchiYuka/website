@@ -1125,3 +1125,84 @@ footer small {
   }
 }
 
+/* =========================
+   GAME CARD HOVER
+========================= */
+
+.game-card {
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  min-height: 220px;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.game-card .game-catch {
+  color: #927c82;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.game-card .game-detail {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(8px);
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.game-card .game-detail p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #78666b;
+}
+
+.game-card .game-hint {
+  display: block;
+  margin-top: 15px;
+  color: #80bdaa;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  transition: opacity 0.2s;
+}
+
+/* カーソルを合わせたとき */
+
+.game-card:hover,
+.game-card:focus-within {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px #a4d8c655;
+}
+
+.game-card:hover .game-detail,
+.game-card:focus-within .game-detail {
+  max-height: 150px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.game-card:hover .game-hint,
+.game-card:focus-within .game-hint {
+  opacity: 0;
+}
+
+/* スマホでは詳細を最初から表示 */
+
+@media (max-width: 700px) {
+  .game-card .game-detail {
+    max-height: 150px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 12px;
+  }
+
+  .game-card .game-hint {
+    display: none;
+  }
+}
+
