@@ -1183,3 +1183,26 @@ footer small {
     display: none;
   }
 }
+
+/* GAMESカードの表示修正 */
+#games .game-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* スクロール表示アニメーションとの併用 */
+#games.reveal.show .game-card {
+  animation: gameCardShow 0.65s ease both;
+}
+
+@keyframes gameCardShow {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
